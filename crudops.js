@@ -2,7 +2,11 @@
 var selectedRow = null;
 function formSubmit(){
    let formData = getData();
-   let readFormData = storedRectriveData(formData);
+     let readFormData = storedRectriveData(formData);
+   if(readFormData = false){
+    message.innerHTML = "please fill the form"
+   }
+   else{
     let message = document.getElementById("mssg");
    if(selectedRow == null){
         insert(readFormData);
@@ -13,6 +17,8 @@ function formSubmit(){
         UpdateData()
         message.innerText = "Data has been updated and inserted in the database!"
    }
+   }
+   
    reset();
 };
 
@@ -100,4 +106,13 @@ function storedRectriveData(formData) {
         selectedRow.cells[4].innerHTML =  document.getElementById("teacher").value;
         selectedRow.cells[5].innerHTML =  document.getElementById("parent").value;
         selectedRow = null;             
+    }
+
+    function remove(td){
+        let affirm = confirm("Are such you want to DELETE this data from the database?");
+        if(affirm == true){
+            selectedRow = td.parentElement.parentElement;
+            document.getElementById("table").deleteRow(selectedRow.selectedRowindex)
+        };
+        
     }
