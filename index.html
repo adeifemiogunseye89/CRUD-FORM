@@ -64,13 +64,13 @@
 <body>
     <fieldset>
         <legend>Admission Form</legend>
-        <form autocomplete="off" onsubmit="event.preventDefault(); formSubmit();"> <!-- Moved formSubmit here for type="submit" -->
-            <!-- <div>
-                <label for="profileImageDisplay">Profile Picture:</label><br>
-                <img src="placeholder.png" alt="Current profile picture" id="profileImageDisplay" style="width:100px; height:100px; border:1px solid #ccc;"> <br>
+        <form autocomplete="off" id="studentForm"> <!-- Moved formSubmit here for type="submit" -->
+            <div>
                 <label for="profileImageUpload">Upload Image:</label><br><br>
                 <input type="file" id="profileImageUpload" accept="image/*">
-            </div><br> -->
+            </div><br>
+
+            <img src="" alt="profile" id="profileImageDisplay" style="width:50px; height:50px; border:1px solid #ccc;">
 
             <div>
                 <label for="name">Name:</label><br>
@@ -108,9 +108,12 @@
                 <input type="text" id="parent" required>
             </div><br>
 
-            <input type="submit" value="Submit" id="submitButton">
+            <!-- <input type="submit" value="Submit" id="submitButton"> -->
             <!-- <input type="submit" value="reset" id="resetButton"> -->
             <!-- Or use type="button" and keep onclick="formSubmit()" if preferred, but type="submit" is more semantic for a form -->
+
+            <button type="submit" id="submitButton">Submit</button> <!-- Changed to a button for better compatibility with some JS selectors -->
+
         </form>
     </fieldset>
 
@@ -121,6 +124,7 @@
         <table id="studentsTable">
             <thead>
                 <tr>
+                    <th>Picture</th>
                     <th>Name</th>
                     <th>Age</th>
                     <th>Gender</th>
@@ -130,7 +134,7 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="studentsTableBody">
+            <tbody id="studentsTableList">
                 <!-- Student rows will be dynamically inserted here by crudops.js -->
             </tbody>
         </table>
