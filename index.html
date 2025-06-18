@@ -5,141 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript CRUD</title>
 </head>
-<!-- <body>
-    <fieldset>
-        <legend><h2>Admission Form</h2></legend>
-     
-            <table>
-                <tr>
-                    <td>
-                        <form autocomplete="off" onsubmit="event.preventDefault()">
-                            <label for="profile">Profile</label><br>
-                            <img src="" alt="" srcset="" id="profile">
-                            <input type="image" id="image"><br><br>
-                            <label for="name">Name:</label><br>
-                            <input type="text"  id="name"><br><br>
-                             <label for="name">Age:</label><br>
-                            <input type="text"  id="age"><br><br>
-                             <label for="gender">Gender:</label><br>
-                            <input type="text" id="gender"><br><br>
-                             <label for="class">Class:</label><br>
-                            <input type="text"  id="class"><br><br>
-                             <label for="techer">Teacher:</label><br>
-                            <input type="text" id="teacher"><br><br>
-                             <label for="parent">Parents:</label><br>
-                            <input type="text" id="parent"><br><br>
-                            <input type="button" value="Submit" id="button" onclick="formSubmit()">
-                        </form>
-                    </td>
-                </tr>
-            </table> 
-        </fieldset><br>
+    <body>
+        <fieldset>
+            <legend>Admission Form</legend>
+            <form autocomplete="off" id="studentForm">
+                <div>
+                    <label for="profileImageUpload">Upload Image:</label><br><br>
+                    <input type="file" id="profileImageUpload" accept="image/*">
+                </div><br>
 
-        <div id="mssg"></div><br><br>
+                <img src="" alt="profile" id="profileImageDisplay" style="width:50px; height:50px; border:1px solid #ccc;">
+
+                <div>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" required>
+                </div><br>
+
+                <div>
+                    <label for="age">Age:</label><br>
+                    <input type="number" id="age" min="1" required>
+                </div><br>
+
+                <div>
+                    <label for="gender">Gender:</label><br>
+                    <select id="gender" required>
+                        <option>--Please choose an option--</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="prefer_not_to_say">Prefer not to say</option>
+                    </select>
+                </div><br>
+
+                <div>
+                    <label for="class">Class:</label><br>
+                    <input type="text" id="class" required>
+                </div><br>
+
+                <div>
+                    <label for="teacher">Teacher:</label><br>
+                    <input type="text" id="teacher" required>
+                </div><br>
+
+                <div>
+                    <label for="parent">Parent/Guardian Name:</label><br>
+                    <input type="text" id="parent" required>
+                </div><br>
+
+                <!-- <input type="submit" value="Submit" id="submitButton">              
+                    Or use type="button" and keep onclick="formSubmit()" 
+                    if preferred, but type="submit" is more semantic for a form 
+                 however, we Changed it to a button for better compatibility with preffered JS selectors -->
+
+                <button type="submit" id="submitButton">Submit</button> 
+                <button type="submit" id="resetButton">Reset</button>
+
+            </form>
+        </fieldset>
+
+        <div id="mssg"></div> <!-- aria-live for accessibility of messages -->
 
         <fieldset>
-            <legend><h2>Students Details</h2></legend>
-            <tr>
-                <td>
-                    <thead>
-                        <th>Image</th>
+            <legend>Students Details</legend>
+            <table id="studentsTable">
+                <thead>
+                    <tr>
+                        <th>Picture</th>
                         <th>Name</th>
                         <th>Age</th>
                         <th>Gender</th>
                         <th>Class</th>
                         <th>Teacher</th>
-                        <th>guardian/Parents</th>
+                        <th>Guardian/Parents</th>
                         <th>Actions</th>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </td>
-            </tr>
+                    </tr>
+                </thead>
+                <tbody id="studentsTableList">
+                    <!-- Student rows lists will be dynamically inserted here by crudops.js -->
+                </tbody>
+            </table>
         </fieldset>
 
-   <script src="crudops.js"></script>
-</body> -->
-
-<body>
-    <fieldset>
-        <legend>Admission Form</legend>
-        <form autocomplete="off" id="studentForm"> <!-- Moved formSubmit here for type="submit" -->
-            <div>
-                <label for="profileImageUpload">Upload Image:</label><br><br>
-                <input type="file" id="profileImageUpload" accept="image/*">
-            </div><br>
-
-            <img src="" alt="profile" id="profileImageDisplay" style="width:50px; height:50px; border:1px solid #ccc;">
-
-            <div>
-                <label for="name">Name:</label><br>
-                <input type="text" id="name" required>
-            </div><br>
-
-            <div>
-                <label for="age">Age:</label><br>
-                <input type="number" id="age" min="1" required>
-            </div><br>
-
-            <div>
-                <label for="gender">Gender:</label><br>
-                <select id="gender" required>
-                    <option>--Please choose an option--</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                    <option value="prefer_not_to_say">Prefer not to say</option>
-                </select>
-            </div><br>
-
-            <div>
-                <label for="class">Class:</label><br>
-                <input type="text" id="class" required>
-            </div><br>
-
-            <div>
-                <label for="teacher">Teacher:</label><br>
-                <input type="text" id="teacher" required>
-            </div><br>
-
-            <div>
-                <label for="parent">Parent/Guardian Name:</label><br>
-                <input type="text" id="parent" required>
-            </div><br>
-
-            <!-- <input type="submit" value="Submit" id="submitButton"> -->
-            <!-- <input type="submit" value="reset" id="resetButton"> -->
-            <!-- Or use type="button" and keep onclick="formSubmit()" if preferred, but type="submit" is more semantic for a form -->
-
-            <button type="submit" id="submitButton">Submit</button> <!-- Changed to a button for better compatibility with some JS selectors -->
-
-        </form>
-    </fieldset>
-
-    <div id="mssg"></div> <!-- aria-live for accessibility of messages -->
-
-    <fieldset>
-        <legend>Students Details</legend>
-        <table id="studentsTable">
-            <thead>
-                <tr>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Class</th>
-                    <th>Teacher</th>
-                    <th>Guardian/Parents</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="studentsTableList">
-                <!-- Student rows will be dynamically inserted here by crudops.js -->
-            </tbody>
-        </table>
-    </fieldset>
-
-   <script src="crudops.js"></script>
-</body>
+    <script src="crudops.js"></script>
+    </body>
 </html>
