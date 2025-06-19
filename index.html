@@ -4,8 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript CRUD</title>
+    <link rel="stylesheet" href="crud.css">
 </head>
     <body>
+        <div class="user-container">
+            <button class="user-button" id="addStudents">New Student</button>
+        </div>
+
+        <div class="modal-container" id="Pop-Up">
+            <div class="modal-card" id="modal-box">
+                <span class="close-toggle" id="close-toggle">&times;</span>
+                <p>this pop Up of the modal div!</p>
+            </div>
+        </div>
+
+
+
         <fieldset>
             <legend>Admission Form</legend>
             <form autocomplete="off" id="studentForm">
@@ -87,5 +101,6 @@
         </fieldset>
 
     <script src="crudops.js"></script>
+    <script src="CrudPop.js"></script>
     </body>
 </html>
